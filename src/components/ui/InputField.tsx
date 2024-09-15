@@ -23,7 +23,7 @@ function InputField({ name, label, control, type, placeholder }) {
         type={type}
         {...field}
         placeholder={placeholder}
-        className={`shadow appearance-none border rounded-md text-lg py-2 px-1 w-full text-gray-700 leading-tight focus:outline-none focus:shadow-lg ${error ? 'border-red-500' : ''}`}
+        className={`shadow appearance-none border w-auto rounded-md text-lg py-2 px-1 w-full text-gray-700 leading-tight focus:outline-none focus:shadow-lg ${error ? 'border-red-500' : ''}`}
       />
       {error && <p className="text-red-500 text-xs italic">{error.message}</p>}
     </div>

@@ -17,7 +17,7 @@ export function useLogin() {
       queryClient.setQueryData(['user'], user);
       toast.success('Login Successfully');
       window.localStorage.setItem('loggedIn', 'true');
-      navigate('/home');
+      navigate(`/home/${user.data.id}`);
     },
     onError: (err) => {
       toast.error('Wrong Credentials Pleas try again');
