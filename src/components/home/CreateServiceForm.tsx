@@ -112,7 +112,6 @@ export const CreateServiceForm: FC<CreateNewServiceModalProps> = ({
           className="inline-flex h-9 items-center justify-center rounded-md bg-green-500 px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-green-400 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-green-400 dark:focus-visible:ring-green-500 disabled:pointer-events-none disabled:opacity-50"
           disabled={isPending}
         >
-          Submit
           {!isPending ? 'Save Service' : 'Processing...'}
         </button>
       </div>

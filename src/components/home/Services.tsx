@@ -31,7 +31,7 @@ export const Services = () => {
           </div>
           <button
             onClick={handleOpenModal}
-            className="inline-flex h-10 items-center justify-center rounded-md dark:text-gray-300 dark:bg-gray-800 bg-slate-400 text-black px-8 text-lg font-medium shadow transition-colors hover:scale-95 hover:bg-slate-800 hover:text-white disabled:pointer-events-none"
+            className="inline-flex h-10 items-center justify-center rounded-md dark:text-gray-300 dark:bg-gray-800 bg-slate-400 text-black px-8 text-lg font-medium shadow transition-colors hover:scale-95 disabled:pointer-events-none"
           >
             Create new Service
           </button>
@@ -40,7 +40,7 @@ export const Services = () => {
           {data?.map((item: getServicesDataType) => (
             <>
               <div
-                onClick={() => navigate(`/service/${item.id}`)}
+                onClick={() => navigate(`/service/${userId}/${item.id}`)}
                 className="rounded-lg shadow-xl min-w-60 bg-slate-300 dark:bg-gray-800 dark:text-gray-200 overflow-hidden hover:scale-105 transition-transform duration-300"
               >
                 <div className="p-6 flex items-center justify-between">

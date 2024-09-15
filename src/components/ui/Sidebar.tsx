@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { HiMenuAlt3 } from 'react-icons/hi';
 import { FaHome, FaUsers, FaSignOutAlt } from 'react-icons/fa';
 import { GrServices } from 'react-icons/gr';
@@ -14,9 +14,9 @@ function Sidebar() {
   const [isOpen, setisOpen] = useState(false);
   const { logout, isPending, isSuccess } = useLogOut();
   const navigate = useNavigate();
-
+  const { id } = useParams();
   const menus = [
-    { name: 'Home', Link: '/home', icon: FaHome },
+    { name: 'Home', Link: `/home/${id}`, icon: FaHome },
     { name: 'Services', Link: '/service', icon: GrServices },
     { name: 'Clients', Link: '/', icon: FaUsers },
     { name: 'Profile', Link: '/', icon: CgProfile },
