@@ -10,10 +10,9 @@ import { ThemeProvider } from './context/ThemeContext.ts';
 import { useEffect, useState } from 'react';
 import FrontPage from './pages/FrontPage.tsx';
 import Service from './pages/Service.tsx';
-import AxiosIntercepter from './hooks/AxiosIntercepter.tsx';
+import AxiosIntercepter from './components/ui/AxiosIntercepter.tsx';
 
 function App() {
-  AxiosIntercepter();
   const isLoggedIn = window.localStorage.getItem('loggedIn');
   const [ThemeMode, setThemeMode] = useState('light');
 
@@ -28,13 +27,12 @@ function App() {
     document.querySelector('html')?.classList.remove('dark', 'light');
     document.querySelector('html')?.classList.add(ThemeMode);
   }, [ThemeMode]);
-
   return (
     <>
       <ThemeProvider value={{ ThemeMode, darkTheme, lightTheme }}>
         <Routes>
           {/* Unauthorized Routes */}
-          {isLoggedIn != 'true' && (
+          {isLoggedIn !== 'true' && (
             <>
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
