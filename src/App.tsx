@@ -52,10 +52,10 @@ function App() {
           >
             <Route path="/login" element={<Navigate to="/" />} />
             <Route path="/register" element={<Navigate to="/" />} />
-            <Route path="/" element={<Navigate to="/home" />} />
+            <Route path="/" element={<Navigate to="/home/:id" />} />
 
-            <Route path="/home" element={<Home />} />
-            <Route path="/service" element={<Service />} />
+            <Route path="/home/:id" element={<Home />} />
+            <Route path="/service/:id" element={<Service />} />
             <Route path="/client" element={<Home />} />
           </Route>
           <Route path="*" element={<Navigate to="/" />} />

@@ -7,7 +7,7 @@ function AppLayout() {
     <div>
       <Header />
       <Sidebar />
-      <main className="ml-16 pt-20">
+      <main className="ml-14 pt-20 h-screen dark:bg-black">
         <Outlet />
       </main>
     </div>

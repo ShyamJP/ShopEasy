@@ -17,7 +17,7 @@ export async function createService(data: createServiceType) {
       { withCredentials: true }
     );
 
-    return response;
+    return response.data;
   } catch (error) {
     console.log("Service can't created pls try Again !");
     throw error;

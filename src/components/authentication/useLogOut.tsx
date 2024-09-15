@@ -4,7 +4,6 @@ import { logout as logoutApi } from '../../services/apiAuth';
 import { useNavigate } from 'react-router-dom';
 export function useLogOut() {
   const queryClient = useQueryClient();
-  console.log();
   const navigate = useNavigate();
   const {
     mutate: logout,

@@ -30,7 +30,7 @@ function Sidebar() {
       console.log('logout');
       navigate('/');
       toast.success('Logout Successfully');
-      window.localStorage.removeItem('loggedIn');
+      // window.localStorage.removeItem('loggedIn');
     }
   };
   return (
