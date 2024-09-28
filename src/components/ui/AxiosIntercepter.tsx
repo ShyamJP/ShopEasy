@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { useLogOut } from '../components/authentication/useLogOut';
+import { useLogOut } from '../authentication/useLogOut';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 function AxiosIntercepter() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { logout } = useLogOut();
   console.log('Intercepter called');
 
@@ -14,9 +14,9 @@ function AxiosIntercepter() {
     },
     (error) => {
       if (error.response?.status === 401) {
-        toast.error('Invalid Token or Token is Expired');
+        // toast.error('Invalid Token or Token is Expired');
         logout();
-        navigate('/');
+        // navigate('/');
       }
       return Promise.reject(error);
     }
