@@ -13,6 +13,7 @@ import Service from './pages/Service.tsx';
 // import AxiosIntercepter from './components/ui/AxiosIntercepter.tsx';
 
 function App() {
+  // AxiosIntercepter();
   const isLoggedIn = window.localStorage.getItem('loggedIn');
   const [ThemeMode, setThemeMode] = useState('light');
 
@@ -27,12 +28,13 @@ function App() {
     document.querySelector('html')?.classList.remove('dark', 'light');
     document.querySelector('html')?.classList.add(ThemeMode);
   }, [ThemeMode]);
+
   return (
     <>
       <ThemeProvider value={{ ThemeMode, darkTheme, lightTheme }}>
         <Routes>
           {/* Unauthorized Routes */}
-          {isLoggedIn !== 'true' && (
+          {isLoggedIn != 'true' && (
             <>
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
@@ -53,7 +55,7 @@ function App() {
             <Route path="/" element={<Navigate to="/home/:id" />} />
 
             <Route path="/home/:id" element={<Home />} />
-            <Route path="/service/:id" element={<Service />} />
+            <Route path="/service/:id/:sid" element={<Service />} />
             <Route path="/client" element={<Home />} />
           </Route>
           <Route path="*" element={<Navigate to="/" />} />
