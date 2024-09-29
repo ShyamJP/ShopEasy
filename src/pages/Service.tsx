@@ -3,6 +3,7 @@ import { GrServices } from 'react-icons/gr';
 import { HiCurrencyRupee } from 'react-icons/hi';
 import { FaUsers } from 'react-icons/fa';
 import { PiPlus } from 'react-icons/pi';
+import ClientsList from '../components/Service/ClientsList';
 
 function Service() {
   return (
@@ -83,7 +84,9 @@ function Service() {
       {/* List of clients  Table
         fields - name , contact info , createdAt , right Arrow for navigate
       */}
-      <section></section>
+      <section>
+        <ClientsList />
+      </section>
     </div>
   );
 }

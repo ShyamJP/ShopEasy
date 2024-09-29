@@ -10,7 +10,7 @@ import { ThemeProvider } from './context/ThemeContext.ts';
 import { useEffect, useState } from 'react';
 import FrontPage from './pages/FrontPage.tsx';
 import Service from './pages/Service.tsx';
-import AxiosIntercepter from './components/ui/AxiosIntercepter.tsx';
+// import AxiosIntercepter from './components/ui/AxiosIntercepter.tsx';
 
 function App() {
   const isLoggedIn = window.localStorage.getItem('loggedIn');
