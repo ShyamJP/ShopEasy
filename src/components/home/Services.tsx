@@ -7,7 +7,7 @@ export const Services = () => {
   const [isCreateServiceModalVisible, setIsCreateServiceModalVisible] =
     useState(false);
   const { id } = useParams<{ id: string }>();
-  const userId = parseInt(id);
+  const userId = id ? parseInt(id) : 0;
   const { data, refetch } = useAllServices({ id: userId });
   const navigate = useNavigate();
 

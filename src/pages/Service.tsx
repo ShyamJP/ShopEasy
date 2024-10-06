@@ -4,8 +4,17 @@ import { HiCurrencyRupee } from 'react-icons/hi';
 import { FaUsers } from 'react-icons/fa';
 import { PiPlus } from 'react-icons/pi';
 import ClientsList from '../components/Service/ClientsList';
+import { useState } from 'react';
+import CreateClientModal from '../components/Service/CreateClientModal';
 
 function Service() {
+  const [isCreateServiceModalVisible, setIsCreateServiceModalVisible] =
+    useState(false);
+
+  const handleToggleModal = () => {
+    setIsCreateServiceModalVisible(!isCreateServiceModalVisible);
+  };
+
   return (
     <div className="">
       {/* header of Service  - two sections vertical 
@@ -73,6 +82,7 @@ function Service() {
           <button
             type="button"
             className="flex text-green-700 w-28 md:text-base text-sm h-10 sm:w-44  hover:text-white border border-green-700 hover:bg-green-700 focus:outline-none  font-bold rounded-lg  md:px-5 py-2 text-center me-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800"
+            onClick={handleToggleModal}
           >
             <span className="mt-1 mr-2 ml-2" title="Add client">
               <PiPlus />
@@ -87,6 +97,13 @@ function Service() {
       <section>
         <ClientsList />
       </section>
+
+      {isCreateServiceModalVisible && (
+        <CreateClientModal
+          isVisible={isCreateServiceModalVisible}
+          isClose={handleToggleModal}
+        />
+      )}
     </div>
   );
 }

@@ -19,3 +19,12 @@ declare interface getClientsType {
   userId: number;
   serviceId: number;
 }
+
+declare interface getClientListType {
+  id: number;
+  name: string;
+  contactInfo: string;
+  createdAt: string;
+  userId: number;
+  serviceId: number;
+}
