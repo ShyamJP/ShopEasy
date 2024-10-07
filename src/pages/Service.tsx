@@ -6,13 +6,39 @@ import { PiPlus } from 'react-icons/pi';
 import ClientsList from '../components/Service/ClientsList';
 import { useState } from 'react';
 import CreateClientModal from '../components/Service/CreateClientModal';
+import DeleteClientModal from '../components/Service/DeleteClientModal';
+import UpdateClientModal from '../components/Service/UpdateClientModal';
 
 function Service() {
-  const [isCreateServiceModalVisible, setIsCreateServiceModalVisible] =
+  const [isCreateClientModalVisible, setIsCreateClientModalVisible] =
     useState(false);
+  const [isDeleteClientModalVisible, setIsDeleteClientModalVisible] =
+    useState(false);
+  const [isEditClientModalVisible, setIsEditClientModalVisible] =
+    useState(false);
+  const [deleteData, setDeleteData] = useState<deleteClientDataType>();
+  const [editData, setEditData] = useState<getClientListType>();
 
   const handleToggleModal = () => {
-    setIsCreateServiceModalVisible(!isCreateServiceModalVisible);
+    setIsCreateClientModalVisible(!isCreateClientModalVisible);
+  };
+
+  const handleToggleDeleteModal = () => {
+    setIsDeleteClientModalVisible(!isDeleteClientModalVisible);
+  };
+
+  const handleToggleEditModal = () => {
+    setIsEditClientModalVisible(!isEditClientModalVisible);
+  };
+  const handleDelete = (data: deleteClientDataType) => {
+    setDeleteData(data);
+    handleToggleDeleteModal();
+  };
+
+  const handleEdit = (data: getClientListType) => {
+    console.log(data);
+    handleToggleEditModal();
+    setEditData(data);
   };
 
   return (
@@ -22,7 +48,7 @@ function Service() {
             2. total no. of clients 
             3. total profit of service per month
       */}
-      <section className="flex-wrap sm:flex  text-center align-middle justify-around border-y-2 border-gray-100 p-3 dark:text-gray-100 dark:bg-gray-800">
+      <section className="flex-wrap sm:flex  text-center align-middle justify-around border-y-2 border-gray-100 p-3 dark:text-gray-300 dark:bg-gray-800">
         <div className="flex pr-5">
           <div className="my-2 text-3xl m-3">
             <GrServices />
@@ -63,17 +89,20 @@ function Service() {
       </section>
 
       {/* Row -> search bar for client , filters , Add client button */}
-      <section className="flex-wrap sm:flex sm:flex-nowrap mt-2 p-2 bg-slate-300 dark:bg-gray-800">
-        <div className="relative w-full">
-          <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+      <section className="flex-wrap sm:flex jus sm:flex-nowrap mt-2 p-2 dark:text-gray-300  dark:bg-gray-800">
+        <div className="text-center">
+          <h2 className="text-xl font-bold sm:text-2xl">Clients</h2>
+        </div>
+        <div className="w-full">
+          {/* <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
             <span className="text-gray-500">
               <FaUsers />
             </span>
-          </div>
+          </div> */}
           <input
             type="text"
             id="simple-search"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm bg-slate-50 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/2 lg:w-1/4 ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="border border-gray-300 text-gray-900 text-sm bg-slate-50 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/2 lg:w-1/4 ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Search client..."
             required
           />
@@ -95,13 +124,26 @@ function Service() {
         fields - name , contact info , createdAt , right Arrow for navigate
       */}
       <section>
-        <ClientsList />
+        <ClientsList onDelete={handleDelete} onEdit={handleEdit} />
       </section>
 
-      {isCreateServiceModalVisible && (
+      {isCreateClientModalVisible && (
         <CreateClientModal
-          isVisible={isCreateServiceModalVisible}
+          isVisible={isCreateClientModalVisible}
           isClose={handleToggleModal}
+        />
+      )}
+      {isDeleteClientModalVisible && (
+        <DeleteClientModal
+          isVisible={isDeleteClientModalVisible}
+          onClose={handleToggleDeleteModal}
+          deleteData={deleteData}
+        />
+      )}
+      {isEditClientModalVisible && (
+        <UpdateClientModal
+          isVisible={isEditClientModalVisible}
+          onClose={handleToggleEditModal}
         />
       )}
     </div>

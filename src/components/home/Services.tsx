@@ -26,7 +26,7 @@ export const Services = () => {
         <div className="flex flex-wrap items-center justify-between w-full">
           <div className="text-center space-y-2">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl dark:text-gray-300">
-              Our Services sdf
+              Our Services
             </h2>
           </div>
           <button

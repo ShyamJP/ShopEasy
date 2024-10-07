@@ -15,6 +15,11 @@ declare interface deleteClientType {
   id: number;
 }
 
+declare interface deleteClientDataType {
+  id: number;
+  name: string;
+}
+
 declare interface getClientsType {
   userId: number;
   serviceId: number;
