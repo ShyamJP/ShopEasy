@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { useDeleteClient } from './useDeleteClient';
 import Spinner from '../ui/Spinner';
 
@@ -18,9 +18,7 @@ const DeleteClientModal: FC<DeleteClientModalType> = ({
     const params = {
       id: deleteData.id,
     };
-    setTimeout(() => {
-      deleteClient(params);
-    }, 5000);
+    deleteClient(params);
   };
 
   useEffect(() => {
@@ -58,7 +56,7 @@ const DeleteClientModal: FC<DeleteClientModalType> = ({
               onClick={delteClient}
               disabled={isPending}
             >
-              {isPending ? <Spinner /> : 'Delete'}
+              {isPending ? 'Deleting...' : 'Delete'}
             </button>
           </div>
         </div>

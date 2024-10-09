@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export async function createClient(data: createClientType) {
   try {
-    const { name, userId, contactInfo, serviceId } = data;
+    const { name, userId, contactInfo, serviceId, address } = data;
     const response = await axios.post(
       `${BackendURL}client`,
       {
@@ -11,6 +11,7 @@ export async function createClient(data: createClientType) {
         userId,
         contactInfo,
         serviceId,
+        address,
       },
       {
         withCredentials: true,
@@ -26,13 +27,14 @@ export async function createClient(data: createClientType) {
 
 export async function updateClient(data: updateClientType) {
   try {
-    const { name, contactInfo, id } = data;
+    const { name, contactInfo, id, address } = data;
 
     const response = await axios.put(
       `${BackendURL}client/${id}`,
       {
         name,
         contactInfo,
+        address,
       },
       {
         withCredentials: true,

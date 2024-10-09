@@ -1,13 +1,16 @@
 import { FC } from 'react';
+import UpdateClientForm from './UpdateClientForm';
 
 interface UpdateClientModalType {
   isVisible: boolean;
   onClose: () => void;
+  editData: getClientListType;
 }
 
 const UpdateClientModal: FC<UpdateClientModalType> = ({
   isVisible,
   onClose,
+  editData,
 }) => {
   return (
     <div>
@@ -25,7 +28,7 @@ const UpdateClientModal: FC<UpdateClientModalType> = ({
             isVisible ? 'scale-100' : 'scale-95'
           }`}
         >
-          <h1>Hello</h1>
+          <UpdateClientForm rowData={editData} />
         </div>
       </div>
     </div>

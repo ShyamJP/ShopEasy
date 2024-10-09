@@ -1,42 +1,11 @@
-import { FC, useEffect, useState } from 'react';
-import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
-import { useParams } from 'react-router-dom';
+import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import useCreateClient from './useCreateClient';
-import { useGetClients } from './useGetClients';
 
-interface CreateClientFormProps {
-  onClose: () => void;
-  rowData?: updateClientType;
-}
-
-export const CreateClientForm: FC<CreateClientFormProps> = ({
-  rowData = null,
-  onClose,
-}) => {
-  const [editData, setEditData] = useState<updateClientType | null>();
-  const [editSession, setEditSession] = useState<boolean>(false);
-  const { id, sid } = useParams();
-  const { CreatClient, isSuccess, isPending } = useCreateClient();
-  console.log('edti data', rowData);
-
-  if (rowData) {
-    setEditData(rowData);
-    setEditSession(true);
-  }
-
-  const param = {
-    userId: id ? parseInt(id) : 0,
-    serviceId: sid ? parseInt(sid) : 0,
-  };
-
-  const { refetch } = useGetClients(param);
-
+function UpdateClientForm({ rowData }) {
   const schema = yup.object({
     name: yup.string().required(),
     contactInfo: yup.string().required(),
-    address: yup.string(),
   });
 
   const {
@@ -46,30 +15,8 @@ export const CreateClientForm: FC<CreateClientFormProps> = ({
     reset,
   } = useForm({ resolver: yupResolver(schema) });
 
-  const onSubmit = (data: {
-    name: string;
-    contactInfo: string;
-    address?: string;
-  }) => {
-    const clientData: createClientType = {
-      ...data,
-      userId: id ? parseInt(id) : 0,
-      serviceId: sid ? parseInt(sid) : 0,
-    };
-
-    CreatClient(clientData);
-  };
-
-  useEffect(() => {
-    if (isSuccess) {
-      reset();
-      onClose();
-      refetch();
-    }
-  }, [isSuccess, reset, onClose, refetch]);
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form>
       <div className="grid grid-cols-4 items-center gap-4">
         <label
           htmlFor="name"
@@ -147,4 +94,6 @@ export const CreateClientForm: FC<CreateClientFormProps> = ({
       </div>
     </form>
   );
-};
+}
+
+export default UpdateClientForm;

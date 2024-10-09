@@ -4,11 +4,13 @@ import { CreateClientForm } from './CreateClientForm';
 interface CreateClientModalProps {
   isVisible: boolean;
   isClose: () => void;
+  rowData?: updateClientType;
 }
 
 const CreateClientModal: FC<CreateClientModalProps> = ({
   isVisible,
   isClose,
+  rowData,
 }) => {
   return (
     <div
@@ -25,7 +27,8 @@ const CreateClientModal: FC<CreateClientModalProps> = ({
           isVisible ? 'scale-100' : 'scale-95'
         }`}
       >
-        <CreateClientForm onClose={isClose} />
+        <p className="text-lg font-bold text-center mb-3">Create Client</p>
+        <CreateClientForm onClose={isClose} rowData={rowData} />
       </div>
     </div>
   );

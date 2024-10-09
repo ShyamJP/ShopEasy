@@ -1,15 +1,37 @@
-import { FaRupeeSign } from 'react-icons/fa';
-import { GrServices } from 'react-icons/gr';
-import { HiCurrencyRupee } from 'react-icons/hi';
-import { FaUsers } from 'react-icons/fa';
 import { PiPlus } from 'react-icons/pi';
 import ClientsList from '../components/Service/ClientsList';
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import CreateClientModal from '../components/Service/CreateClientModal';
 import DeleteClientModal from '../components/Service/DeleteClientModal';
 import UpdateClientModal from '../components/Service/UpdateClientModal';
+import { useParams } from 'react-router-dom';
+import { useAllServices } from '../components/home/useAllServices';
+import ServiceHeader from '../components/Service/ServiceHeader';
+import { useGetClients } from '../components/Service/useGetClients';
 
 function Service() {
+  const [service, setService] = useState<getServicesDataType>();
+  const { id, sid } = useParams();
+  const userId = id ? parseInt(id) : 0;
+  const serviceId = sid ? parseInt(sid) : 0;
+  const { data, refetch, isPending } = useAllServices({ id: userId });
+  const { data, isPending } = useGetClients({
+    userId: userId,
+    serviceId: serviceId,
+  });
+
+  const getService = () => {
+    console.log(data);
+    const service = data?.find(
+      (item: getServicesDataType) => item.id === serviceId
+    );
+    setService(service);
+  };
+
+  useEffect(() => {
+    getService();
+  }, [!isPending]);
+
   const [isCreateClientModalVisible, setIsCreateClientModalVisible] =
     useState(false);
   const [isDeleteClientModalVisible, setIsDeleteClientModalVisible] =
@@ -17,19 +39,19 @@ function Service() {
   const [isEditClientModalVisible, setIsEditClientModalVisible] =
     useState(false);
   const [deleteData, setDeleteData] = useState<deleteClientDataType>();
-  const [editData, setEditData] = useState<getClientListType>();
+  const [editData, setEditData] = useState<getClientListType | null>();
 
-  const handleToggleModal = () => {
-    setIsCreateClientModalVisible(!isCreateClientModalVisible);
-  };
+  const handleToggleModal = useCallback(() => {
+    if (isCreateClientModalVisible) {
+      setEditData(null);
+    }
+    setIsCreateClientModalVisible((prev) => !prev);
+  }, [isCreateClientModalVisible]);
 
   const handleToggleDeleteModal = () => {
     setIsDeleteClientModalVisible(!isDeleteClientModalVisible);
   };
 
-  const handleToggleEditModal = () => {
-    setIsEditClientModalVisible(!isEditClientModalVisible);
-  };
   const handleDelete = (data: deleteClientDataType) => {
     setDeleteData(data);
     handleToggleDeleteModal();
@@ -37,7 +59,15 @@ function Service() {
 
   const handleEdit = (data: getClientListType) => {
     console.log(data);
-    handleToggleEditModal();
+    handleToggleModal();
+    // const {
+    //   createdAt: createdAt,
+    //   userId: userId,
+    //   serviceId: serviceId,
+    //   ...editData
+    // } = data;
+    // console.log(editData);
+
     setEditData(data);
   };
 
@@ -48,45 +78,7 @@ function Service() {
             2. total no. of clients 
             3. total profit of service per month
       */}
-      <section className="flex-wrap sm:flex  text-center align-middle justify-around border-y-2 border-gray-100 p-3 dark:text-gray-300 dark:bg-gray-800">
-        <div className="flex pr-5">
-          <div className="my-2 text-3xl m-3">
-            <GrServices />
-          </div>
-          <div className="flex-row">
-            <p className="text-lg">SERVICE NAME</p>
-            <span className="flex">
-              <p className="text-lg">UNIT NAME: </p>
-              <p className="flex">
-                <span className="font-bold text-lg">100</span>
-                <span className="mt-1">
-                  <FaRupeeSign />
-                </span>
-              </p>
-            </span>
-          </div>
-        </div>
-
-        <div className="flex pr-5">
-          <div className="my-2 text-3xl m-3">
-            <FaUsers />
-          </div>
-          <div className="flex-row">
-            <p className="text-lg">CLIENTS</p>
-            <p className="text-lg font-bold text-green-700">3000</p>
-          </div>
-        </div>
-
-        <div className="flex">
-          <div className="my-2 text-3xl m-3">
-            <HiCurrencyRupee />
-          </div>
-          <div className="flex-row">
-            <p className="text-lg">Profit current month</p>
-            <p className="text-lg font-bold text-lg">5000</p>
-          </div>
-        </div>
-      </section>
+      <ServiceHeader service={service} />
 
       {/* Row -> search bar for client , filters , Add client button */}
       <section className="flex-wrap sm:flex jus sm:flex-nowrap mt-2 p-2 dark:text-gray-300  dark:bg-gray-800">
@@ -131,6 +123,7 @@ function Service() {
         <CreateClientModal
           isVisible={isCreateClientModalVisible}
           isClose={handleToggleModal}
+          rowData={editData}
         />
       )}
       {isDeleteClientModalVisible && (
@@ -140,12 +133,13 @@ function Service() {
           deleteData={deleteData}
         />
       )}
-      {isEditClientModalVisible && (
-        <UpdateClientModal
+      {/* {isCreateClientModalVisible && (
+        <CreateClientModal
           isVisible={isEditClientModalVisible}
-          onClose={handleToggleEditModal}
+          isClose={handleToggleModal}
+          editData={editData}
         />
-      )}
+      )} */}
     </div>
   );
 }

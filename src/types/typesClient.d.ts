@@ -3,12 +3,14 @@ declare interface createClientType {
   userId: number;
   contactInfo: string;
   serviceId: number;
+  address?: string;
 }
 
 declare interface updateClientType {
   name: string;
   contactInfo: string;
   id: number;
+  address: string;
 }
 
 declare interface deleteClientType {
@@ -32,4 +34,5 @@ declare interface getClientListType {
   createdAt: string;
   userId: number;
   serviceId: number;
+  address: string;
 }
