@@ -58,7 +58,7 @@ const ClientsList: FC<ClientListType> = ({ onDelete, onEdit }) => {
     }
   }
   return (
-    <div className="relative w-full overflow-x-scroll md:overflow-x-auto shadow-md sm:rounded-lg mt-2 mx-3">
+    <div className="relative overflow-x-scroll md:overflow-x-auto shadow-md sm:rounded-lg mt-2 mx-3">
       <table className="w-full text-sm overflow-x-scroll border-gray-800 text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-sm text-gray-700 uppercase bg-slate-300 dark:bg-gray-700 dark:text-gray-400">
           <tr>
@@ -86,7 +86,7 @@ const ClientsList: FC<ClientListType> = ({ onDelete, onEdit }) => {
               <td className="px-6 py-4">{row.createdAt}</td>
               <td className="px-6 py-4">
                 <button
-                  className="text-xl mx-2"
+                  className="text-xl text-slate-500 mx-2 hover:bg-slate-200 rounded-full p-2"
                   onClick={() => handleEdit(row)}
                   title="Edit"
                 >

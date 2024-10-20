@@ -5,7 +5,7 @@ import Spinner from '../ui/Spinner';
 interface DeleteClientModalType {
   isVisible: boolean;
   onClose: () => void;
-  deleteData: deleteClientDataType;
+  deleteData: deleteClientDataType | undefined;
 }
 const DeleteClientModal: FC<DeleteClientModalType> = ({
   isVisible,

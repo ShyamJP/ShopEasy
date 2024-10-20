@@ -3,7 +3,6 @@ import ClientsList from '../components/Service/ClientsList';
 import { useCallback, useEffect, useState } from 'react';
 import CreateClientModal from '../components/Service/CreateClientModal';
 import DeleteClientModal from '../components/Service/DeleteClientModal';
-import UpdateClientModal from '../components/Service/UpdateClientModal';
 import { useParams } from 'react-router-dom';
 import { useAllServices } from '../components/home/useAllServices';
 import ServiceHeader from '../components/Service/ServiceHeader';
@@ -37,10 +36,8 @@ function Service() {
     useState(false);
   const [isDeleteClientModalVisible, setIsDeleteClientModalVisible] =
     useState(false);
-  const [isEditClientModalVisible, setIsEditClientModalVisible] =
-    useState(false);
   const [deleteData, setDeleteData] = useState<deleteClientDataType>();
-  const [editData, setEditData] = useState<getClientListType | null>();
+  const [editData, setEditData] = useState<getClientListType | null>(null);
 
   const handleToggleModal = useCallback(() => {
     if (isCreateClientModalVisible) {
@@ -115,7 +112,7 @@ function Service() {
       {/* List of clients  Table
         fields - name , contact info , createdAt , right Arrow for navigate
       */}
-      <section>
+      <section className="w-full">
         <ClientsList onDelete={handleDelete} onEdit={handleEdit} />
       </section>
 
@@ -133,13 +130,6 @@ function Service() {
           deleteData={deleteData}
         />
       )}
-      {/* {isCreateClientModalVisible && (
-        <CreateClientModal
-          isVisible={isEditClientModalVisible}
-          isClose={handleToggleModal}
-          editData={editData}
-        />
-      )} */}
     </div>
   );
 }

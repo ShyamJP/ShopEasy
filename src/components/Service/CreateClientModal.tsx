@@ -27,7 +27,6 @@ const CreateClientModal: FC<CreateClientModalProps> = ({
           isVisible ? 'scale-100' : 'scale-95'
         }`}
       >
-        <p className="text-lg font-bold text-center mb-3">Create Client</p>
         <CreateClientForm onClose={isClose} rowData={rowData} />
       </div>
     </div>

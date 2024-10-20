@@ -10,7 +10,7 @@ declare interface updateClientType {
   name: string;
   contactInfo: string;
   id: number;
-  address: string;
+  address?: string;
 }
 
 declare interface deleteClientType {
