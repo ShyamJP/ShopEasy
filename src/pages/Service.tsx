@@ -14,15 +14,16 @@ function Service() {
   const { id, sid } = useParams();
   const userId = id ? parseInt(id) : 0;
   const serviceId = sid ? parseInt(sid) : 0;
-  const { data, refetch, isPending } = useAllServices({ id: userId });
-  const { data, isPending } = useGetClients({
+  const { data: serviceData, isPending } = useAllServices({
+    id: userId,
+  });
+  const { data: clientData } = useGetClients({
     userId: userId,
     serviceId: serviceId,
   });
 
   const getService = () => {
-    console.log(data);
-    const service = data?.find(
+    const service = serviceData?.find(
       (item: getServicesDataType) => item.id === serviceId
     );
     setService(service);
@@ -59,6 +60,7 @@ function Service() {
 
   const handleEdit = (data: getClientListType) => {
     console.log(data);
+    setEditData(data);
     handleToggleModal();
     // const {
     //   createdAt: createdAt,
@@ -67,8 +69,6 @@ function Service() {
     //   ...editData
     // } = data;
     // console.log(editData);
-
-    setEditData(data);
   };
 
   return (
@@ -78,7 +78,7 @@ function Service() {
             2. total no. of clients 
             3. total profit of service per month
       */}
-      <ServiceHeader service={service} />
+      <ServiceHeader service={service} clients={clientData?.data.data} />
 
       {/* Row -> search bar for client , filters , Add client button */}
       <section className="flex-wrap sm:flex jus sm:flex-nowrap mt-2 p-2 dark:text-gray-300  dark:bg-gray-800">

@@ -5,10 +5,11 @@ import { HiCurrencyRupee } from 'react-icons/hi';
 import { FaUsers } from 'react-icons/fa';
 
 interface ServiceHeaderType {
-  service: getServicesDataType;
+  service: getServicesDataType | undefined;
+  clients: getClientListType[] | undefined;
 }
 
-const ServiceHeader: FC<ServiceHeaderType> = ({ service }) => {
+const ServiceHeader: FC<ServiceHeaderType> = ({ service, clients }) => {
   return (
     <section className="flex-wrap sm:flex  text-center align-middle justify-around border-y-2 border-gray-100 p-3 dark:text-gray-300 dark:bg-gray-800">
       <div className="flex pr-5">
@@ -36,7 +37,7 @@ const ServiceHeader: FC<ServiceHeaderType> = ({ service }) => {
         </div>
         <div className="flex-row">
           <p className="text-lg">CLIENTS</p>
-          <p className="text-lg font-bold text-green-700">3000</p>
+          <p className="text-lg font-bold text-green-700">{clients?.length}</p>
         </div>
       </div>
 

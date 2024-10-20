@@ -4,7 +4,7 @@ import { CreateClientForm } from './CreateClientForm';
 interface CreateClientModalProps {
   isVisible: boolean;
   isClose: () => void;
-  rowData?: updateClientType;
+  rowData?: updateClientType | null;
 }
 
 const CreateClientModal: FC<CreateClientModalProps> = ({

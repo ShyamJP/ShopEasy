@@ -15,16 +15,27 @@ export const CreateClientForm: FC<CreateClientFormProps> = ({
   rowData = null,
   onClose,
 }) => {
-  const [editData, setEditData] = useState<updateClientType | null>();
+  const [editData, setEditData] = useState<updateClientType>();
   const [editSession, setEditSession] = useState<boolean>(false);
   const { id, sid } = useParams();
   const { CreatClient, isSuccess, isPending } = useCreateClient();
-  console.log('edti data', rowData);
 
-  if (rowData) {
-    setEditData(rowData);
-    setEditSession(true);
-  }
+  useEffect(() => {
+    if (rowData) {
+      setEditData(rowData);
+      setEditSession(true);
+    }
+  }, [rowData]);
+
+  const setRowData = () => {
+    setValue('name', editData?.name);
+    setValue('address', editData?.address);
+    setValue('contactInfo', editData?.contactInfo);
+  };
+
+  useEffect(() => {
+    setRowData();
+  }, [rowData.id]);
 
   const param = {
     userId: id ? parseInt(id) : 0,
@@ -43,8 +54,11 @@ export const CreateClientForm: FC<CreateClientFormProps> = ({
     handleSubmit,
     register,
     formState: { errors },
+    setValue,
     reset,
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   const onSubmit = (data: {
     name: string;
