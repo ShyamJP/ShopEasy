@@ -1,13 +1,14 @@
 import useTheme from '../../context/ThemeContext';
 import { MdOutlineDarkMode, MdLightMode } from 'react-icons/md';
 import { useLogOut } from '../authentication/useLogOut';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 function Header() {
   const { ThemeMode, darkTheme, lightTheme } = useTheme();
-  const { logout, isPending, isSuccess } = useLogOut();
+  const { logout, isPending } = useLogOut();
   const navigate = useNavigate();
+  const { id } = useParams();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleChange = () => {
     if (ThemeMode == 'light') {
@@ -19,9 +20,9 @@ function Header() {
 
   const handleLogout = () => {
     logout();
-    if (isSuccess) {
+    if (isPending) {
       // console.log('logout');
-      // navigate('/');
+      navigate('/');
       toast.success('Logout Successfully');
       // window.localStorage.setItem('loggedIn', '');
     }
@@ -30,8 +31,9 @@ function Header() {
   return (
     <div className="flex flex-wrap items-center justify-between mx-auto p-4 fixed w-full bg-gray-200 border-gray-200 z-10 dark:bg-gray-900 dark:text-gray-200">
       <a
-        href="/home"
-        className="flex items-center space-x-3 rtl:space-x-reverse"
+        // href="/home/"
+        onClick={() => navigate(`/home/${id}`)}
+        className="flex items-center space-x-3 rtl:space-x-reverse cursor-pointer"
       >
         {/* <img
             src="https://flowbite.com/docs/images/logo.svg"

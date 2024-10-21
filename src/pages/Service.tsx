@@ -79,19 +79,18 @@ function Service() {
 
       {/* Row -> search bar for client , filters , Add client button */}
       <section className="flex-wrap sm:flex jus sm:flex-nowrap mt-2 p-2 dark:text-gray-300  dark:bg-gray-800">
-        <div className="text-center">
-          <h2 className="text-xl font-bold sm:text-2xl">Clients</h2>
-        </div>
-        <div className="w-full">
+        {/* <div className="text-center"></div> */}
+        <div className="w-full flex justify-between">
           {/* <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
             <span className="text-gray-500">
               <FaUsers />
             </span>
           </div> */}
+          <h2 className="text-xl font-bold sm:text-2xl">Clients</h2>
           <input
             type="text"
             id="simple-search"
-            className="border border-gray-300 text-gray-900 text-sm bg-slate-50 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/2 lg:w-1/4 ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="border border-gray-300 mr-5 text-gray-900 text-sm bg-slate-50 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/2 lg:w-1/4 ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Search client..."
             required
           />
