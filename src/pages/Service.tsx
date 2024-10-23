@@ -7,7 +7,6 @@ import { useParams } from 'react-router-dom';
 import { useAllServices } from '../components/home/useAllServices';
 import ServiceHeader from '../components/Service/ServiceHeader';
 import { useGetClients } from '../components/Service/useGetClients';
-import { FaUsers } from 'react-icons/fa';
 
 function Service() {
   const [service, setService] = useState<getServicesDataType>();
