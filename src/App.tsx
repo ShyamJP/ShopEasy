@@ -10,6 +10,7 @@ import { ThemeProvider } from './context/ThemeContext.ts';
 import { useEffect, useState } from 'react';
 import FrontPage from './pages/FrontPage.tsx';
 import Service from './pages/Service.tsx';
+import Client from './pages/Client.tsx';
 // import AxiosIntercepter from './components/ui/AxiosIntercepter.tsx';
 
 function App() {
@@ -56,7 +57,7 @@ function App() {
 
             <Route path="/home/:id" element={<Home />} />
             <Route path="/service/:id/:sid" element={<Service />} />
-            <Route path="/client" element={<Home />} />
+            <Route path="/client/:id/:sid/:cid" element={<Client />} />
           </Route>
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>

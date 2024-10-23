@@ -1,10 +1,12 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useId, useState } from 'react';
 import { useGetClients } from './useGetClients';
 import { useParams } from 'react-router-dom';
 import { MdDelete } from 'react-icons/md';
 import { MdModeEditOutline } from 'react-icons/md';
-import { FaAngleDoubleRight } from 'react-icons/fa';
+import { FaAngleDoubleRight, FaUsersSlash } from 'react-icons/fa';
 import Spinner from '../ui/Spinner';
+import useSearchClient from './useSearchClient';
+import { useNavigate } from 'react-router-dom';
 
 const columns = [
   'Name',
@@ -17,17 +19,31 @@ const columns = [
 interface ClientListType {
   onDelete: (data: deleteClientDataType) => void;
   onEdit: (data: getClientListType) => void;
+  searchQuery: string;
 }
 
-const ClientsList: FC<ClientListType> = ({ onDelete, onEdit }) => {
+const ClientsList: FC<ClientListType> = ({ onDelete, onEdit, searchQuery }) => {
   const { id, sid } = useParams();
   const [clientlist, setClientList] = useState<getClientListType[]>([]);
   const [emptyData, setEmptyData] = useState(false);
+  const [debounceQuery, setDebounceQuery] = useState('');
+  const [queryResult, setQueryResult] = useState([]);
+
+  const navigate = useNavigate();
+
+  let Clients: getClientListType[] = [];
+
   const param = {
     userId: id ? parseInt(id) : 0,
     serviceId: sid ? parseInt(sid) : 0,
   };
   const { isPending, data } = useGetClients(param);
+  const {
+    isPending: isPendingSC,
+    isSuccess,
+    data: searchData,
+    refetch,
+  } = useSearchClient({ ...param, query: debounceQuery });
 
   const handleDelete = (data: deleteClientDataType) => {
     onDelete(data);
@@ -37,12 +53,35 @@ const ClientsList: FC<ClientListType> = ({ onDelete, onEdit }) => {
     onEdit(data);
   };
 
+  const handleViewClient = (cId: number) => {
+    navigate(`/client/${id}/${sid}/${cId}`);
+  };
+
   useEffect(() => {
     setClientList(data?.data.data);
     if (data?.data.data.length == 0) {
       setEmptyData(true);
     }
   });
+
+  useEffect(() => {
+    const delayedSearch = setTimeout(() => {
+      if (searchQuery !== '') setDebounceQuery(searchQuery);
+    }, 1000);
+
+    return () => clearTimeout(delayedSearch);
+  }, [searchQuery]);
+
+  useEffect(() => {
+    if (debounceQuery) {
+      // refetch();
+      if (!isPending) {
+        console.log(searchData);
+        setQueryResult(searchData?.data.data);
+      }
+    }
+  }, [debounceQuery, searchData]);
+
   {
     if (isPending) {
       return (
@@ -54,7 +93,13 @@ const ClientsList: FC<ClientListType> = ({ onDelete, onEdit }) => {
   }
   {
     if (emptyData) {
-      return <h1>No Clients Available</h1>;
+      return (
+        <div className="flex flex-col mt-10">
+          <p className="mx-auto text-9xl text-slate-400 opacity-40">
+            <FaUsersSlash />
+          </p>
+        </div>
+      );
     }
   }
   return (
@@ -102,6 +147,7 @@ const ClientsList: FC<ClientListType> = ({ onDelete, onEdit }) => {
                 <button
                   className="text-xl mx-2 hover:translate-x-2 duration-300"
                   title="View"
+                  onClick={() => handleViewClient(row.id)}
                 >
                   <FaAngleDoubleRight />
                 </button>

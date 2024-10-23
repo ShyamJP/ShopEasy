@@ -77,3 +77,20 @@ export async function getClients(data: getClientsType) {
     throw error;
   }
 }
+
+export async function serachClients(data: searchClientType) {
+  try {
+    const { serviceId, userId, query } = data;
+    const response = await axios.get(
+      `${BackendURL}client/${userId}/${serviceId}/search?query=${query}`,
+      {
+        withCredentials: true,
+      }
+    );
+
+    return response;
+  } catch (error) {
+    console.log('No Clients Found ', error);
+    throw error;
+  }
+}

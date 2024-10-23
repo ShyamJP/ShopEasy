@@ -27,7 +27,6 @@ export const CreateClientForm: FC<CreateClientFormProps> = ({
   } = useUpdateClient();
 
   useEffect(() => {
-    console.log(rowData);
     if (rowData !== null) {
       setEditData(rowData);
       setEditSession(true);
@@ -77,7 +76,6 @@ export const CreateClientForm: FC<CreateClientFormProps> = ({
     if (editSession) {
       if (editData?.id) {
         const clientData: updateClientType = { ...data, id: editData.id };
-        console.log(clientData);
         UpdateClient(clientData);
       }
     } else {

@@ -36,3 +36,9 @@ declare interface getClientListType {
   serviceId: number;
   address: string;
 }
+
+declare interface searchClientType {
+  userId: number;
+  serviceId: number;
+  query: string;
+}

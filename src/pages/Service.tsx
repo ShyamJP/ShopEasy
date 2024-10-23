@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import { useAllServices } from '../components/home/useAllServices';
 import ServiceHeader from '../components/Service/ServiceHeader';
 import { useGetClients } from '../components/Service/useGetClients';
+import { FaUsers } from 'react-icons/fa';
 
 function Service() {
   const [service, setService] = useState<getServicesDataType>();
@@ -38,6 +39,7 @@ function Service() {
     useState(false);
   const [deleteData, setDeleteData] = useState<deleteClientDataType>();
   const [editData, setEditData] = useState<getClientListType | null>(null);
+  const [query, setQuery] = useState('');
 
   const handleToggleModal = useCallback(() => {
     if (isCreateClientModalVisible) {
@@ -59,14 +61,11 @@ function Service() {
     console.log(data);
     setEditData(data);
     handleToggleModal();
-    // const {
-    //   createdAt: createdAt,
-    //   userId: userId,
-    //   serviceId: serviceId,
-    //   ...editData
-    // } = data;
-    // console.log(editData);
   };
+
+  // useEffect(() => {
+  //   console.log(query);
+  // }, [query]);
 
   return (
     <div className="">
@@ -90,9 +89,10 @@ function Service() {
           <input
             type="text"
             id="simple-search"
-            className="border border-gray-300 mr-5 text-gray-900 text-sm bg-slate-50 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/2 lg:w-1/4 ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="border border-gray-300 mr-5 text-gray-900 text-sm bg-slate-50 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/2 lg:w-1/4 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Search client..."
             required
+            onChange={(e) => setQuery(e.target.value)}
           />
         </div>
         <div className="flex justify-center">
@@ -112,7 +112,11 @@ function Service() {
         fields - name , contact info , createdAt , right Arrow for navigate
       */}
       <section className="w-full">
-        <ClientsList onDelete={handleDelete} onEdit={handleEdit} />
+        <ClientsList
+          onDelete={handleDelete}
+          onEdit={handleEdit}
+          searchQuery={query}
+        />
       </section>
 
       {isCreateClientModalVisible && (
