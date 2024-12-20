@@ -94,3 +94,20 @@ export async function serachClients(data: searchClientType) {
     throw error;
   }
 }
+
+export async function getClient(data: getClientType) {
+  try {
+    const { userId, serviceId, id } = data;
+    const response = await axios.get(
+      `${BackendURL}client/${userId}/${serviceId}/${id}`,
+      {
+        withCredentials: true,
+      }
+    );
+
+    return response.data.data;
+  } catch (error) {
+    console.log('error getClient', error);
+    throw error;
+  }
+}

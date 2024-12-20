@@ -42,3 +42,20 @@ declare interface searchClientType {
   serviceId: number;
   query: string;
 }
+
+declare interface getClientType {
+  id: number;
+  serviceId: number;
+  userId: number;
+}
+
+declare interface getClientDataType {
+  id: number;
+  name: string;
+  contactInfo: string;
+  createdAt: string;
+  address: string;
+  records: [];
+  userId: number;
+  serviceId: number;
+}
