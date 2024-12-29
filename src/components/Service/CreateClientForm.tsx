@@ -54,7 +54,7 @@ export const CreateClientForm: FC<CreateClientFormProps> = ({
 
   const schema = yup.object({
     name: yup.string().required(),
-    contactInfo: yup.string().required(),
+    contactInfo: yup.string().max(10).required(),
     address: yup.string(),
   });
 
@@ -113,14 +113,16 @@ export const CreateClientForm: FC<CreateClientFormProps> = ({
           <input
             id="name"
             type="text"
-            placeholder="Enter Client Name"
+            placeholder="Name"
             {...register('name')}
             className="col-span-3 rounded-md border border-gray-300 dark:border-gray-700 bg-transparent dark:bg-gray-800 px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-primary dark:focus:ring-gray-600"
           />
           {errors && (
-            <p className="text-red-500 text-xs italic">
-              {errors.name?.message}
-            </p>
+            <div className="">
+              <p className="col-span-4 text-right text-red-500 w-full text-xs italic">
+                {errors.name?.message}
+              </p>
+            </div>
           )}
         </div>
         <div className="grid grid-cols-4 items-center gap-4">
@@ -133,7 +135,7 @@ export const CreateClientForm: FC<CreateClientFormProps> = ({
           <input
             id="contactInfo"
             type="text"
-            placeholder="Enter Mo.no 9995555999"
+            placeholder="9995555999"
             {...register('contactInfo')}
             className="col-span-3 rounded-md border border-gray-300 dark:border-gray-700 bg-transparent dark:bg-gray-800 px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-primary dark:focus:ring-gray-600"
           />
@@ -178,7 +180,10 @@ export const CreateClientForm: FC<CreateClientFormProps> = ({
             disabled={isPending || isPendingUpdate}
           >
             {!editSession && (!isPending ? 'Create Client' : 'creating...')}
-            {!isPendingUpdate && editSession ? 'Update Client' : 'updating...'}
+            {editSession &&
+              (!isPendingUpdate && editSession
+                ? 'Update Client'
+                : 'updating...')}
           </button>
         </div>
       </form>

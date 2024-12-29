@@ -22,16 +22,16 @@ export const Services = () => {
 
   return (
     <section className="w-full py-10 md:py-10 lg:py-10">
-      <div className="flex flex-col items-center gap-6 mx-16">
+      <div className="flex flex-col items-center gap-6 mx-2 md:mx-16">
         <div className="flex flex-wrap items-center justify-between w-full">
           <div className="text-center space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl dark:text-gray-300">
+            <h2 className="text-xl sm:text-3xl font-bold tracking-tighter dark:text-gray-300">
               Our Services
             </h2>
           </div>
           <button
             onClick={handleOpenModal}
-            className="inline-flex h-10 items-center justify-center rounded-md dark:text-gray-300 dark:bg-gray-800 bg-slate-400 text-black px-8 text-lg font-medium shadow transition-colors hover:scale-95 disabled:pointer-events-none"
+            className="inline-flex h-10 items-center justify-center rounded-md dark:text-gray-300 dark:bg-gray-800 bg-slate-400 text-black px-4 md:px-8 text-sm sm:text-xl font-medium shadow transition-colors hover:scale-95 disabled:pointer-events-none"
           >
             Create new Service
           </button>

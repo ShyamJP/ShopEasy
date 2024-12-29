@@ -36,7 +36,7 @@ function Sidebar() {
   };
   return (
     <div
-      className={`bg-slate-200 h-screen p-2 duration-200 z-0 text-gray-900 ${isOpen ? 'w-60' : 'w-14'} fixed dark:bg-gray-900 dark:text-slate-200 pt-16`}
+      className={`bg-slate-200 h-screen p-2 duration-200 z-10 text-gray-900 ${isOpen ? 'w-60' : 'w-14'} fixed dark:bg-gray-900 dark:text-slate-200 pt-16`}
     >
       <div className="py-3 flex justify-end">
         <HiMenuAlt3

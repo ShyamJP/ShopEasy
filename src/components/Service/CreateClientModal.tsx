@@ -14,7 +14,7 @@ const CreateClientModal: FC<CreateClientModalProps> = ({
 }) => {
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center overflow-y-auto transition-opacity duration-300 ${isVisible ? 'opacity-100 visible' : 'opacity-0 invisible'} `}
+      className={`fixed inset-0 z-50 flex items-center justify-center overflow-y-auto transition-opacity duration-300 ${isVisible ? 'opacity-100 visible' : 'opacity-0 invisible'} dark:text-gray-300  dark:bg-gray-800`}
     >
       <div
         className={`fixed inset-0 bg-black/50 transition-opacity duration-300 ${

@@ -29,7 +29,7 @@ function Header() {
   };
 
   return (
-    <div className="flex flex-wrap items-center justify-between mx-auto p-4 fixed w-full bg-gray-200 border-gray-200 z-10 dark:bg-gray-900 dark:text-gray-200">
+    <div className="flex flex-wrap items-center z-20 justify-between mx-auto p-4 fixed w-full bg-gray-200 border-gray-200 dark:bg-gray-900 dark:text-gray-200">
       <a
         // href="/home/"
         onClick={() => navigate(`/home/${id}`)}

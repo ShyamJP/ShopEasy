@@ -67,7 +67,7 @@ function Service() {
   // }, [query]);
 
   return (
-    <div className="">
+    <div className="dark:bg-black">
       {/* header of Service  - two sections vertical 
             1. Service name , price per unit , also make for update 
             2. total no. of clients 
@@ -77,24 +77,15 @@ function Service() {
 
       {/* Row -> search bar for client , filters , Add client button */}
       <section className="flex-wrap sm:flex jus sm:flex-nowrap mt-2 p-2 dark:text-gray-300  dark:bg-gray-800">
-        {/* <div className="text-center"></div> */}
-        <div className="w-full flex justify-between">
+        <div className="sm:w-1/3 flex justify-center sm:justify-start">
           {/* <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
             <span className="text-gray-500">
               <FaUsers />
             </span>
           </div> */}
           <h2 className="text-xl font-bold sm:text-2xl">Clients</h2>
-          <input
-            type="text"
-            id="simple-search"
-            className="border border-gray-300 mr-5 text-gray-900 text-sm bg-slate-50 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/2 lg:w-1/4 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Search client..."
-            required
-            onChange={(e) => setQuery(e.target.value)}
-          />
         </div>
-        <div className="flex justify-center">
+        <div className="sm:w-1/3 flex justify-center ">
           <button
             type="button"
             className="flex text-green-700 w-28 md:text-base text-sm h-10 sm:w-44  hover:text-white border border-green-700 hover:bg-green-700 focus:outline-none  font-bold rounded-lg  md:px-5 py-2 text-center me-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800"
@@ -105,6 +96,16 @@ function Service() {
             </span>{' '}
             <span>Add client</span>
           </button>
+        </div>
+        <div className="sm:w-1/3 flex justify-center sm:justify-end">
+          <input
+            type="text"
+            id="simple-search"
+            className="border border-gray-300 mr-5 text-gray-900 text-sm bg-slate-50 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-2/3 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Search client..."
+            required
+            onChange={(e) => setQuery(e.target.value)}
+          />
         </div>
       </section>
       {/* List of clients  Table
