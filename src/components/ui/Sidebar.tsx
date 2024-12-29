@@ -18,8 +18,6 @@ function Sidebar() {
 
   const menus = [
     { name: 'Home', Link: `/home/${id}`, icon: FaHome },
-    { name: 'Services', Link: '/service', icon: GrServices },
-    { name: 'Clients', Link: '/', icon: FaUsers },
     { name: 'Profile', Link: '/', icon: CgProfile },
     { name: 'About', Link: '/', icon: BsInfoCircle },
     { name: 'Contact', Link: '/', icon: GrContactInfo },

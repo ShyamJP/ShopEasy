@@ -57,7 +57,7 @@ export const CreateServiceForm: FC<CreateNewServiceModalProps> = ({
   }, [onClose]);
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="grid grid-cols-4 items-center gap-4">
+      <div className="grid grid-cols-4 items-center gap-2">
         <label
           htmlFor="name"
           className="text-right text-gray-600 dark:text-gray-300"
@@ -72,12 +72,12 @@ export const CreateServiceForm: FC<CreateNewServiceModalProps> = ({
           className="col-span-3 rounded-md border border-gray-300 dark:border-gray-700 bg-transparent dark:bg-gray-800 px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-primary dark:focus:ring-gray-600"
         />
         {errors && (
-          <div className=" text-red-500 text-xs italic">
+          <div className="col-span-4 justify-end text-red-500 text-xs italic">
             {errors.serviceName?.message}
           </div>
         )}
       </div>
-      <div className="grid grid-cols-4 items-center gap-4">
+      <div className="grid grid-cols-4 items-center gap-2">
         <label
           htmlFor="unit"
           className="text-right text-gray-600 dark:text-gray-300"
@@ -92,10 +92,12 @@ export const CreateServiceForm: FC<CreateNewServiceModalProps> = ({
           className="col-span-3 rounded-md border border-gray-300 dark:border-gray-700 bg-transparent dark:bg-gray-800 px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-primary dark:focus:ring-gray-600"
         />
         {errors && (
-          <p className="text-red-500 text-xs italic">{errors.unit?.message}</p>
+          <p className="col-span-4  text-red-500 text-xs italic">
+            {errors.unit?.message}
+          </p>
         )}
       </div>
-      <div className="grid grid-cols-4 items-center gap-4">
+      <div className="grid grid-cols-4 items-center gap-2">
         <label
           htmlFor="price"
           className="text-right text-gray-600 dark:text-gray-300"
@@ -110,7 +112,7 @@ export const CreateServiceForm: FC<CreateNewServiceModalProps> = ({
           className="col-span-3 rounded-md border border-gray-300 dark:border-gray-700 bg-transparent dark:bg-gray-800 px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-primary dark:focus:ring-gray-600"
         />
         {errors && (
-          <p className="text-red-500 text-xs italic">
+          <p className="col-span-4 justify-end text-red-500 text-xs italic">
             {errors.pricePerUnit?.message}
           </p>
         )}

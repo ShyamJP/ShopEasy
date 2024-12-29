@@ -9,7 +9,7 @@ function Client() {
     userId: id ? parseInt(id) : 0,
     serviceId: sid ? parseInt(sid) : 0,
   };
-  const { data, isPending, isSuccess } = useGetClient(params);
+  const { data } = useGetClient(params);
   const currentMonth = getMonth();
 
   return (
