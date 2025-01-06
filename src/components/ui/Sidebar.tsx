@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { HiMenuAlt3 } from 'react-icons/hi';
 import { FaHome, FaUsers, FaSignOutAlt } from 'react-icons/fa';
 import { GrServices } from 'react-icons/gr';
@@ -9,11 +9,13 @@ import { GrContactInfo } from 'react-icons/gr';
 import { useLogOut } from '../authentication/useLogOut';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import { IoMdArrowRoundBack } from 'react-icons/io';
 
 function Sidebar() {
   const [isOpen, setisOpen] = useState(false);
   const { logout, isPending, isSuccess } = useLogOut();
   const navigate = useNavigate();
+  const location = useLocation();
   const { id } = useParams();
 
   const menus = [
@@ -36,6 +38,13 @@ function Sidebar() {
     <div
       className={`bg-slate-200 h-screen p-2 duration-200 z-10 text-gray-900 ${isOpen ? 'w-60' : 'w-14'} fixed dark:bg-gray-900 dark:text-slate-200 pt-16`}
     >
+      <div className="flex justify-normal mx-3 text-center text-2xl align-middle">
+        {!location.pathname?.includes('home') && (
+          <button onClick={() => navigate(-1)}>
+            <IoMdArrowRoundBack />
+          </button>
+        )}
+      </div>
       <div className="py-3 flex justify-end">
         <HiMenuAlt3
           size={26}

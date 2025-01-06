@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CreateNewServiceModal from './CreateNewServiceModal';
 import { useAllServices } from './useAllServices';
 import { useNavigate, useParams } from 'react-router-dom';
+import useEscapeKey from '../../hooks/useEscapeKey';
 
 export const Services = () => {
   const [isCreateServiceModalVisible, setIsCreateServiceModalVisible] =
@@ -19,6 +20,9 @@ export const Services = () => {
     setIsCreateServiceModalVisible(false);
     await refetch();
   };
+
+  //Enable to close the Modal on Escape
+  useEscapeKey(handleCloseModal, isCreateServiceModalVisible);
 
   return (
     <section className="w-full py-10 md:py-10 lg:py-10">

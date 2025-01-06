@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import { useAllServices } from '../components/home/useAllServices';
 import ServiceHeader from '../components/Service/ServiceHeader';
 import { useGetClients } from '../components/Service/useGetClients';
+import useEscapeKey from '../hooks/useEscapeKey';
 
 function Service() {
   const [service, setService] = useState<getServicesDataType>();
@@ -65,6 +66,10 @@ function Service() {
   // useEffect(() => {
   //   console.log(query);
   // }, [query]);
+
+  // Enable to close the Modal on Escape
+  useEscapeKey(handleToggleDeleteModal, isDeleteClientModalVisible);
+  useEscapeKey(handleToggleModal, isCreateClientModalVisible);
 
   return (
     <div className="dark:bg-black">
