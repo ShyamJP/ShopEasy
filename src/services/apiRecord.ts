@@ -26,3 +26,5 @@ export async function createRecords(data: createRecordTypes) {
 export async function deleteRecords() {}
 
 export async function updateRecords() {}
+
+export async function getRecords() {}

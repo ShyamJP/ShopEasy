@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import useGetClient from '../components/Client/useGetClient';
 import { getMonth } from '../utils/Date';
+import RecordList from '../components/Client/RecordList';
 
 function Client() {
   const { sid, id, cid } = useParams();
@@ -34,11 +35,15 @@ function Client() {
       Add Record (today)
       date , units , price count , save button
       */}
+
       {/* Section 3
       current month Records
 
       previous month  - total
       */}
+      <section>
+        <RecordList />
+      </section>
     </div>
   );
 }
