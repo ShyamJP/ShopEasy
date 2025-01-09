@@ -1,4 +1,4 @@
-import { FC, useEffect, useId, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useGetClients } from './useGetClients';
 import { useParams } from 'react-router-dom';
 import { MdDelete } from 'react-icons/md';
@@ -34,7 +34,7 @@ const ClientsList: FC<ClientListType> = ({ onDelete, onEdit, searchQuery }) => {
   let Clients: getClientListType[] = [];
 
   const param = {
-    userId: id ? parseInt(id) : 0,
+    id: id ? parseInt(id) : 0,
     serviceId: sid ? parseInt(sid) : 0,
   };
   const { isPending, data } = useGetClients(param);

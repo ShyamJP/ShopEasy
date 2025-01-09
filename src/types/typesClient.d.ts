@@ -10,11 +10,13 @@ declare interface updateClientType {
   name: string;
   contactInfo: string;
   id: number;
+  clientId: number;
   address?: string;
 }
 
 declare interface deleteClientType {
   id: number;
+  clientId: number;
 }
 
 declare interface deleteClientDataType {
@@ -23,7 +25,7 @@ declare interface deleteClientDataType {
 }
 
 declare interface getClientsType {
-  userId: number;
+  id: number;
   serviceId: number;
 }
 
@@ -46,7 +48,7 @@ declare interface searchClientType {
 declare interface getClientType {
   id: number;
   serviceId: number;
-  userId: number;
+  clientId: number;
 }
 
 declare interface getClientDataType {

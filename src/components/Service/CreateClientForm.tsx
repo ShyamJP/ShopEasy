@@ -75,7 +75,11 @@ export const CreateClientForm: FC<CreateClientFormProps> = ({
   }) => {
     if (editSession) {
       if (editData?.id) {
-        const clientData: updateClientType = { ...data, id: editData.id };
+        const clientData: updateClientType = {
+          ...data,
+          clientId: editData.id,
+          id: id ? parseInt(id) : 0,
+        };
         UpdateClient(clientData);
       }
     } else {

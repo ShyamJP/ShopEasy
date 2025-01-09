@@ -1,11 +1,11 @@
 import { FC, useEffect } from 'react';
 import { useDeleteClient } from './useDeleteClient';
-import Spinner from '../ui/Spinner';
+import { useParams } from 'react-router-dom';
 
 interface DeleteClientModalType {
   isVisible: boolean;
   onClose: () => void;
-  deleteData: deleteClientDataType | undefined;
+  deleteData: deleteClientDataType;
 }
 const DeleteClientModal: FC<DeleteClientModalType> = ({
   isVisible,
@@ -13,10 +13,12 @@ const DeleteClientModal: FC<DeleteClientModalType> = ({
   deleteData,
 }) => {
   const { isPending, isSuccess, deleteClient } = useDeleteClient();
+  const { id } = useParams();
 
   const delteClient = () => {
     const params = {
-      id: deleteData.id,
+      id: id ? parseInt(id) : 0,
+      clientId: deleteData.id,
     };
     deleteClient(params);
   };

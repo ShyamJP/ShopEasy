@@ -4,8 +4,9 @@ import axios from 'axios';
 export async function createClient(data: createClientType) {
   try {
     const { name, userId, contactInfo, serviceId, address } = data;
+    const id = userId;
     const response = await axios.post(
-      `${BackendURL}client`,
+      `${BackendURL}client/${id}`,
       {
         name,
         userId,
@@ -27,10 +28,10 @@ export async function createClient(data: createClientType) {
 
 export async function updateClient(data: updateClientType) {
   try {
-    const { name, contactInfo, id, address } = data;
+    const { name, contactInfo, id, address, clientId } = data;
 
     const response = await axios.put(
-      `${BackendURL}client/${id}`,
+      `${BackendURL}client/${id}/${clientId}`,
       {
         name,
         contactInfo,
@@ -49,10 +50,13 @@ export async function updateClient(data: updateClientType) {
 
 export async function delteClient(data: deleteClientType) {
   try {
-    const { id } = data;
-    const response = await axios.delete(`${BackendURL}client/${id}`, {
-      withCredentials: true,
-    });
+    const { id, clientId } = data;
+    const response = await axios.delete(
+      `${BackendURL}client/${id}/${clientId}`,
+      {
+        withCredentials: true,
+      }
+    );
 
     return response;
   } catch (error) {
@@ -63,13 +67,10 @@ export async function delteClient(data: deleteClientType) {
 
 export async function getClients(data: getClientsType) {
   try {
-    const { userId, serviceId } = data;
-    const response = await axios.get(
-      `${BackendURL}client/${userId}/${serviceId}`,
-      {
-        withCredentials: true,
-      }
-    );
+    const { id, serviceId } = data;
+    const response = await axios.get(`${BackendURL}client/${id}/${serviceId}`, {
+      withCredentials: true,
+    });
 
     return response;
   } catch (error) {
@@ -97,9 +98,9 @@ export async function serachClients(data: searchClientType) {
 
 export async function getClient(data: getClientType) {
   try {
-    const { userId, serviceId, id } = data;
+    const { id, serviceId, clientId } = data;
     const response = await axios.get(
-      `${BackendURL}client/${userId}/${serviceId}/${id}`,
+      `${BackendURL}client/${id}/${serviceId}/${clientId}`,
       {
         withCredentials: true,
       }

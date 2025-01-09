@@ -6,8 +6,8 @@ import RecordList from '../components/Client/RecordList';
 function Client() {
   const { sid, id, cid } = useParams();
   const params = {
-    id: cid ? parseInt(cid) : 0,
-    userId: id ? parseInt(id) : 0,
+    clientId: cid ? parseInt(cid) : 0,
+    id: id ? parseInt(id) : 0,
     serviceId: sid ? parseInt(sid) : 0,
   };
   const { data } = useGetClient(params);
